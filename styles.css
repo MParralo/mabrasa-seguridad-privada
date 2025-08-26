@@ -75,6 +75,10 @@ h1, h2, h2, h4, h5, h6{
     font-weight: 700;
 }
 
+h1{
+    font-size: 4rem;
+}
+
 h2{
     font-size: 3rem;
 }
@@ -96,7 +100,7 @@ p{
 
 /* HEADER  GENERAL*/
 .container__header{
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 1;
@@ -225,14 +229,17 @@ p{
     font-weight: 400;
     opacity: 0.8;
     max-width: 45rem;
+    flex: 1;
+    padding: 1rem 0;
 }
 
 .repse__img{
+    flex: 0 1 clamp(180px, 30%, 250px);
     padding: 10px;
 }
 
 .repse__src{
-    width: 40%;
+    width: 100%;
 }
 
 /*INICIO - SEGURIDAD PRIVADA*/
@@ -244,7 +251,8 @@ p{
     margin-top: 2rem;
 }
 
-.seguridad-privada__texts{
+.seguridad-privada__texts,
+.sobre-nosotros__texts{
     display: flex;
     flex-direction: column;
     margin: 1rem 0.5rem;
@@ -274,8 +282,9 @@ p{
     font-size: 1.125rem;
 }
 
-.seguridad-privada__image{
-    height: 100%;
+.seguridad-privada__image,
+.sobre-nosotros__image{
+    height: 100%;    
 }
 
 .seguridad-privada__img-src{
@@ -291,7 +300,8 @@ p{
 
 /*BOTÓN PARA FONDO BLANCO*/
 .seguridad-privada__cta,
-.form__cta{
+.form__cta,
+.sobre-nosotros__cta{
     display: block;
     background-color: var(--background-button);
     color: var(--button-colortext);
@@ -308,7 +318,8 @@ p{
 }
 
 .seguridad-privada__cta:hover,
-.form__cta:hover{
+.form__cta:hover,
+.sobre-nosotros__cta:hover{
     background-color: var(--background-button-hover);
     color: var(--button-colortext-hover);
     border: 2px solid var(--button-border-gold-hover);
@@ -336,12 +347,18 @@ p{
 }
 
 .porque-elegirnos__image{
-    margin: 4rem 0 4rem 6rem;
-    
+    width: 100%;
+    height: 100%;
+    min-width: auto;
+    display: flex;
+    align-items: center;
 }
 
 .porque-elerginos__src{
-    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
+    flex-shrink: 0;
 }
 
 /*BOTÓN PARA FONDO AMARILLO*/
@@ -372,8 +389,8 @@ p{
 .form__container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
     gap: 4rem;
 }
 
@@ -384,19 +401,26 @@ p{
     gap: 2rem;
 }
 
-.form__title{
+.form__title,
+.sobre-nosotros__title{
     position: relative;
 }
 
-
-.form__title::after{
+/* GENERAL */
+.form__title::after,
+.sobre-nosotros__title::after
+{
     content: "";
     position: absolute;
     height: 0.4rem;
     width: 10rem;
-    background-color: var(--background-button);
     bottom: -0.8rem;
     left: 0;
+}
+/*  */
+
+.form__title::after {
+    background-color: var(--background-button);
 }
 
 .form__text{
@@ -449,11 +473,15 @@ p{
     left: 0;
     z-index: 1;
     font-size: 1rem;
-    color: var(--color-text-secundary);
 }
 
 .form__input:focus::placeholder{
     color: transparent;
+}
+
+.form__input--1:focus~label,
+.form__input--1:not(:placeholder-shown)~label{
+    color: var(--color-text-primary);
 }
 
 .form__input--textarea{
@@ -464,11 +492,16 @@ p{
 }
 
 .form__cta--submit{
+    border: 1px solid var(--button-border-white);
     margin: 0;
     cursor: pointer;
     font-size: 1.2rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+}
+
+.form__cta--submit:hover{
+    border: 1px solid var(--button-border-white-hover);
 }
 
 /*FOOTER*/
@@ -520,4 +553,108 @@ p{
     font-style: italic;
     font-size: 1rem;
     margin-top: 1rem;
+}
+
+/* SOBRE-NOSOTROS */
+
+.sobre-nosotros__article{
+    padding-top:8rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.sobre-nosotros__texts,
+.mision-vision-valores__texts{
+    display: flex;
+    gap: 2rem;
+    padding-right: 1rem;
+}
+
+.sobre-nosotros__title,
+.mision-vision-valores__title{
+    position: relative;
+    color: var(--color-text-secundary)
+}
+
+.mision-vision-valores__title::after{
+    content: "";
+    position: absolute;
+    bottom: 0rem;
+    left: 0;
+    height: 0.5rem;
+    width: 10rem;
+    background-color: var(--color-primary);
+}
+.sobre-nosotros__title::after{
+    background-color: var(--color-text-secundary);
+}
+
+.sobre-nosotros__image--1{
+    margin-top: 4rem;
+}
+
+/* MISIÓN, VISIÓN, VALORES*/
+
+.mision-vision-valores__article {
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+    grid-template-rows: 1fr;
+    margin-bottom: 6rem;
+    margin-top: 2rem;
+}
+
+.mision-vision-valores__texts{
+    grid-column: 2 / -1;
+    grid-row: 1;
+}
+
+.mision-vision-valores__image{
+    grid-column: 1 / 2;
+    grid-row: 1;
+}
+
+.mision-vision-valores__texts {
+    display: flex;
+    flex-direction: column;
+}
+
+.mision-vision-valores__title {
+    padding-bottom: 1rem;
+}
+
+.mision-vision-valores__image {
+    width: 100%;
+}
+
+.mision-vision-valores__controlador {
+    position: relative;
+}
+
+.mision-vision-valores__src {
+    width: 100%;
+}
+
+.mision-vision-valores__image{
+    object-fit: cover;
+    
+}
+
+.mision-vision-valores__src--img1{
+    width: 60%;
+    border-radius: 2rem;
+}
+
+.mision-vision-valores__src--img2{
+    position: absolute;
+    right: 2rem;
+    bottom: -4rem;
+    width: 45%;
+    border-radius: 2rem;
+}
+
+/* YELLOW FORM*/
+.form__container--color {
+    background-color: var(--color-primary);
 }
